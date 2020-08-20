@@ -194,68 +194,68 @@
 //	return 0;
 //}
 
-#include <iostream>
-#include <cstring>
-using namespace std;
-
-class Book {
-	char* title;
-	char* isbn;
-	int price;
-public:
-	Book(const char* title, const char* isbn, int value)
-		:price(value) {
-		this->title = new char[strlen(title) + 1];
-		this->isbn = new char[strlen(isbn) + 1];
-		strcpy(this->title, title);
-		strcpy(this->isbn, isbn);
-	}
-	void ShowBookInfo() {
-		cout << "title: " << '\n';
-		cout << "isbn: " << '\n';
-		cout << "price: " << '\n';
-	}
-	~Book() {
-		delete[]title;
-		delete[]isbn;
-	}
-};
-
-class EBook : public Book {
-private:
-	char* DRMKey;
-public:
-	EBook(const char* title, const char* isbn, int value, const char* key)
-		: Book(title, isbn, value) {
-		DRMKey = new char[strlen(key) + 1];
-		strcpy(DRMKey, key);
-	}
-	EBook(const EBook& ref)
-		: Book(ref.title, ref.isbn, ref.price) {
-		DRMKey = new char[strlen(ref.DRMKey) + 1];
-		strcpy(DRMKey, ref.DRMKey);
-	}
-	EBook& operator=(const EBook& ref) {
-		delete[]
-			delete[]
-	}
-	void ShowEBookInfo() {
-		ShowBookInfo();
-		cout << "DRMKey: " << DRMKey << '\n';
-	}
-	~EBook() {
-		delete[]DRMKey;
-	}
-};
-
-int main() {
-	EBook ebook1("좋은 c++ ebook", "555-12345-890-1", 10000, "fdx9woi8kiw");
-	EBook ebook2 = ebook1;
-	ebook2.ShowEBookInfo();
-	cout << '\n';
-	EBook ebook3("dumy", "dumy", 0, "dumy");
-	ebook3 = ebook2;
-	ebook3.ShowEBookInfo();
-	return 0;
-
-}
+//#include <iostream>
+//#include <cstring>
+//using namespace std;
+//
+//class Book {
+//	char* title;
+//	char* isbn;
+//	int price;
+//public:
+//	Book(const char* title, const char* isbn, int value)
+//		:price(value) {
+//		this->title = new char[strlen(title) + 1];
+//		this->isbn = new char[strlen(isbn) + 1];
+//		strcpy(this->title, title);
+//		strcpy(this->isbn, isbn);
+//	}
+//	void ShowBookInfo() {
+//		cout << "title: " << '\n';
+//		cout << "isbn: " << '\n';
+//		cout << "price: " << '\n';
+//	}
+//	~Book() {
+//		delete[]title;
+//		delete[]isbn;
+//	}
+//};
+//
+//class EBook : public Book {
+//private:
+//	char* DRMKey;
+//public:
+//	EBook(const char* title, const char* isbn, int value, const char* key)
+//		: Book(title, isbn, value) {
+//		DRMKey = new char[strlen(key) + 1];
+//		strcpy(DRMKey, key);
+//	}
+//	EBook(const EBook& ref)
+//		: Book(ref.title, ref.isbn, ref.price) {
+//		DRMKey = new char[strlen(ref.DRMKey) + 1];
+//		strcpy(DRMKey, ref.DRMKey);
+//	}
+//	EBook& operator=(const EBook& ref) {
+//		delete[]
+//			delete[]
+//	}
+//	void ShowEBookInfo() {
+//		ShowBookInfo();
+//		cout << "DRMKey: " << DRMKey << '\n';
+//	}
+//	~EBook() {
+//		delete[]DRMKey;
+//	}
+//};
+//
+//int main() {
+//	EBook ebook1("좋은 c++ ebook", "555-12345-890-1", 10000, "fdx9woi8kiw");
+//	EBook ebook2 = ebook1;
+//	ebook2.ShowEBookInfo();
+//	cout << '\n';
+//	EBook ebook3("dumy", "dumy", 0, "dumy");
+//	ebook3 = ebook2;
+//	ebook3.ShowEBookInfo();
+//	return 0;
+//
+//}
