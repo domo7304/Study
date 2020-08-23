@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+//#define _CRT_SECURE_NO_WARNINGS
 //복사생성자가 호출될까 대입연산자가 호출될까
 
 //#include <iostream>
@@ -194,11 +194,14 @@
 //	return 0;
 //}
 
+
+//-----------------------------------------2020.08.21. 금요일----------------------------------------//
 //#include <iostream>
 //#include <cstring>
 //using namespace std;
 //
 //class Book {
+//private:
 //	char* title;
 //	char* isbn;
 //	int price;
@@ -210,10 +213,27 @@
 //		strcpy(this->title, title);
 //		strcpy(this->isbn, isbn);
 //	}
+//	Book(const Book& ref) 
+//		:price(ref.price) {
+//		this->title = new char[strlen(ref.title) + 1];
+//		this->isbn = new char[strlen(ref.isbn) + 1];
+//		strcpy(this->title, ref.title);
+//		strcpy(this->isbn, ref.isbn);
+//	}
+//	Book& operator=(const Book& ref) {
+//		delete[]title;
+//		delete[]isbn;
+//		title = new char[strlen(ref.title) + 1];
+//		isbn = new char[strlen(ref.isbn) + 1];
+//		strcpy(title, ref.title);
+//		strcpy(isbn, ref.isbn);
+//		price = ref.price;
+//		return *this;
+//	}
 //	void ShowBookInfo() {
-//		cout << "title: " << '\n';
-//		cout << "isbn: " << '\n';
-//		cout << "price: " << '\n';
+//		cout << "title: " << title << '\n';
+//		cout << "isbn: " << isbn << '\n';
+//		cout << "price: " << price << '\n';
 //	}
 //	~Book() {
 //		delete[]title;
@@ -231,13 +251,16 @@
 //		strcpy(DRMKey, key);
 //	}
 //	EBook(const EBook& ref)
-//		: Book(ref.title, ref.isbn, ref.price) {
+//		: Book(ref) {
 //		DRMKey = new char[strlen(ref.DRMKey) + 1];
 //		strcpy(DRMKey, ref.DRMKey);
 //	}
 //	EBook& operator=(const EBook& ref) {
-//		delete[]
-//			delete[]
+//		Book::operator=(ref);
+//		delete[]DRMKey;
+//		this->DRMKey = new char[strlen(ref.DRMKey) + 1];
+//		strcpy(this->DRMKey, ref.DRMKey);
+//		return *this;
 //	}
 //	void ShowEBookInfo() {
 //		ShowBookInfo();
@@ -257,5 +280,92 @@
 //	ebook3 = ebook2;
 //	ebook3.ShowEBookInfo();
 //	return 0;
+//}
+
+//#include <iostream>
+//using namespace std;
 //
+//class BoundCheckIntArray {
+//private:
+//	int* arr;
+//	int arrlen;
+//public:
+//	BoundCheckIntArray(int _arrlen)
+//		: arrlen(_arrlen) {
+//		arr = new int[_arrlen];
+//	}
+//	int& operator[](int idx) {
+//		if (idx < 0 || idx >= arrlen) {
+//			cout << "Array index out of bound exception" << '\n';
+//			exit(1);
+//		}
+//		return arr[idx];
+//	}
+//	~BoundCheckIntArray() {
+//		delete[]arr;
+//	}
+//};
+//
+//int main() {
+//	BoundCheckIntArray arr(5);
+//	for (int i = 0; i < 5; i++)
+//		arr[i] = (i + 1) * 11;
+//	for (int i = 0; i < 6; i++)
+//		cout << arr[i] << '\n';
+//	return 0;
+//}
+
+//---------------------------------------------------------------------잘 기억 안날 것 같으므로 뭐하는 함수인지 설명
+// Point 객체를 저장하는 '배열 클래스'를 만들어놓은 모습. 앞의 Point 클래스는 그냥 알던대로 했고, cout만 << 연산자 오버로딩을 통해 편하게 출력하도록 바꾸어줌.
+//#include <iostream>
+//using namespace std;
+//
+//class Point {
+//private:
+//	int xpos, ypos;
+//public:
+//	Point(int x = 0, int y = 0)
+//		: xpos(x), ypos(y) {}
+//	friend ostream& operator<<(ostream& cout, const Point& ref);
+//};
+//
+//ostream& operator<<(ostream& cout, const Point& ref) {
+//	cout << "[" << ref.xpos << ", " << ref.ypos << "]" << '\n';
+//	return cout;
+//}
+//
+//class BoundCheckArray {
+//private:
+//	Point* arr;
+//	int arrlen;
+//public:
+//	BoundCheckArray(int len)
+//		:arrlen(len) {
+//		arr = new Point[len];
+//	}
+//	Point& operator[](int idx) {
+//		if (idx < 0 || idx >= arrlen) {
+//			cout << "Array index out of bound exception" << '\n';
+//			exit(1);
+//		}
+//		return arr[idx];
+//	}
+//	int Getlen() {
+//		return arrlen;
+//	}
+//	~BoundCheckArray() {
+//		delete[]arr;
+//	}
+//};
+//
+//int main() {
+//	BoundCheckArray arr(3);
+//	arr[0] = Point(3, 4);
+//	arr[1] = Point(5, 6);
+//	arr[2] = Point(7, 8);
+//
+//	for (int i = 0; i < arr.Getlen() + 1; i++) {
+//		cout << arr[i];
+//	}
+//	return 0;
 //}
