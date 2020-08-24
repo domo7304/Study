@@ -328,7 +328,7 @@
 //		: xpos(x), ypos(y) {}
 //	friend ostream& operator<<(ostream& cout, const Point& ref);
 //};
-//
+//	
 //ostream& operator<<(ostream& cout, const Point& ref) {
 //	cout << "[" << ref.xpos << ", " << ref.ypos << "]" << '\n';
 //	return cout;
