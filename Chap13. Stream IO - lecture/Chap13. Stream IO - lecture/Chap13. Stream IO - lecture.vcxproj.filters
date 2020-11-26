@@ -33,5 +33,11 @@
     <ClCompile Include="Fig.13.6.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Fig.13.8.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Fig.13.19.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

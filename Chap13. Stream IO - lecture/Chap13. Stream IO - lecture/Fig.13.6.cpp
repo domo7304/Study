@@ -21,26 +21,3 @@
 //		cout << setprecision(i) << root2 << "\n";
 //	}
 //}
-
-#include <iostream>
-#include <iomanip>
-using namespace std;
-
-int main() {
-	double num = 3251.141592;
-
-	cout << "Square root of 2 with precision 0-9. \n"
-		<< "Precision set by ostream member function precision:\n";
-	cout << fixed;
-
-	for (int i = 0; i <= 9; i++) {
-		cout.precision(i);
-		cout << num << "\n";
-	}
-
-	cout << "\nPrecision set by stream manipulator setprecision:\n";
-
-	for (int i = 0; i <= 9; i++) {
-		cout << setprecision(i) << num << "\n";
-	}
-}

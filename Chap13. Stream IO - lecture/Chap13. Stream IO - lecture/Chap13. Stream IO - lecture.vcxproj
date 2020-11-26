@@ -140,11 +140,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Fig.13.1.cpp" />
+    <ClCompile Include="Fig.13.19.cpp" />
     <ClCompile Include="Fig.13.2.cpp" />
     <ClCompile Include="Fig.13.3.cpp" />
     <ClCompile Include="Fig.13.4.cpp" />
     <ClCompile Include="Fig.13.5.cpp" />
     <ClCompile Include="Fig.13.6.cpp" />
+    <ClCompile Include="Fig.13.8.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
