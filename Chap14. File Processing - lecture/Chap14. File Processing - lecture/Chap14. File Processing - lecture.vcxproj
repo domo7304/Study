@@ -142,6 +142,7 @@
     <ClCompile Include="app, ate.cpp" />
     <ClCompile Include="Fig.14.11.cpp" />
     <ClCompile Include="Fig.14.12.cpp" />
+    <ClCompile Include="Fig.14.13 - Banking account program.cpp" />
     <ClCompile Include="Fig.14.6.cpp" />
     <ClCompile Include="ClientData.cpp" />
   </ItemGroup>

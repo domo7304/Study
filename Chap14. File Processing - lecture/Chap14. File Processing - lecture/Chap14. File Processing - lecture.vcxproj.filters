@@ -30,6 +30,9 @@
     <ClCompile Include="Fig.14.12.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Fig.14.13 - Banking account program.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClientData.h">
