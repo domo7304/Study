@@ -46,53 +46,53 @@
 //	return 0;
 //}
 
-//#define _CRT_SECURE_NO_WARNINGS
-//#include <iostream>
-//#include <cstring>
-//using namespace std;
-//
-//class Person {
-//private:
-//	char* name;
-//public:
-//	Person(const char* name) {
-//		this->name = new char[strlen(name) + 1];
-//		strcpy(this->name, name);
-//	}
-//	~Person() {
-//		delete[]name;
-//	}
-//	void WhatYourName() {
-//		cout << "My name is " << name << '\n';
-//	}
-//};
-//
-//class UnivStudent : public Person {
-//private:
-//	char* major;
-//public:
-//	UnivStudent(const char* name, const char* major)
-//		: Person(name) {
-//		this->major = new char[strlen(major) + 1];
-//		strcpy(this->major, major);
-//	}
-//	~UnivStudent() {
-//		delete[]major;
-//	}
-//	void WhoAreYou() {
-//		WhatYourName();
-//		cout << "My major is " << major << '\n' << '\n';
-//	}
-//};
-//
-//int main() {
-//	UnivStudent st1("Kim", "Mathematics");
-//	st1.WhoAreYou();
-//	UnivStudent st2("Hong", "Physics");
-//	st2.WhoAreYou();
-//
-//	return 0;
-//}
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+class Person {
+private:
+	char* name;
+public:
+	Person(const char* name) {
+		this->name = new char[strlen(name) + 1];
+		strcpy(this->name, name);
+	}
+	~Person() {
+		delete[]name;
+	}
+	void WhatYourName() {
+		cout << "My name is " << name << '\n';
+	}
+};
+
+class UnivStudent : public Person {
+private:
+	char* major;
+public:
+	UnivStudent(const char* name, const char* major)
+		: Person(name) {
+		this->major = new char[strlen(major) + 1];
+		strcpy(this->major, major);
+	}
+	~UnivStudent() {
+		delete[]major;
+	}
+	void WhoAreYou() {
+		WhatYourName();
+		cout << "My major is " << major << '\n' << '\n';
+	}
+};
+
+int main() {
+	UnivStudent st1("Kim", "Mathematics");
+	st1.WhoAreYou();
+	UnivStudent st2("Hong", "Physics");
+	st2.WhoAreYou();
+
+	return 0;
+}
 
 //#include <iostream>
 //using namespace std;
@@ -404,157 +404,157 @@
 
 
 //---------------------------------------2020.8.4. »≠ø‰¿œ-----------------------------------------------//
-#define _CRT_SECURE_NO_WARNINGS
-#include <iostream>
-#include <cstring>
-using namespace std;
-
-class Employee {
-private:
-	char name[100];
-public:
-	Employee(const char* name) {
-		strcpy(this->name, name);
-	}
-	void ShowYourName() const {
-		cout << "name: " << name << '\n';
-	}
-	virtual int GetPay() const = 0;
-	virtual void ShowSalaryInfo() const = 0;
-};
-
-class PermanentWorker : public Employee {
-private:
-	int salary;
-public:
-	PermanentWorker(const char* name, int money)
-		: Employee(name), salary(money) {}
-	int GetPay() const {
-		return salary;
-	};
-	void ShowSalaryInfo() const {
-		ShowYourName();
-		cout << "salary: " << GetPay() << '\n' << '\n';
-	}
-};
-
-class TemporaryWorker : public Employee {
-private:
-	int workTime;
-	int payPerHour;
-public:
-	TemporaryWorker(const char* name, int pay)
-		:Employee(name), workTime(0), payPerHour(pay) {}
-	void AddWorkTime(int time) {
-		workTime += time;
-	}
-	int GetPay() const {
-		return workTime * payPerHour;
-	}
-	void ShowSalaryInfo() const {
-		ShowYourName();
-		cout << "salary: " << GetPay() << '\n' << '\n';
-	}
-};
-
-class SalesWorker : public PermanentWorker {
-private:
-	int salesResult;
-	double bonusRatio;
-public:
-	SalesWorker(const char* name, int money, double ratio)
-		: PermanentWorker(name, money), salesResult(0), bonusRatio(ratio) {};
-	void AddSalaryResult(int value) {
-		salesResult += value;
-	}
-	int GetPay() const {
-		return PermanentWorker::GetPay() + (int)(salesResult * bonusRatio);
-	}
-	void ShowSalaryInfo() const {
-		ShowYourName();
-		cout << "salary: " << GetPay() << '\n' << '\n';
-	}
-};
-
-namespace RISK_LEVEL {
-	enum {
-		RISK_A, RISK_B, RISK_C
-	};
-	double Risk_level(int risk) {
-		switch (risk) {
-		case RISK_A:
-			return 0.3;
-			break;
-		case RISK_B:
-			return 0.2;
-			break;
-		case RISK_C:
-			return 0.1;
-			break;
-		}
-	}
-}
-
-class ForeignSalesWorker : public SalesWorker {
-private:
-	int risk;
-public:
-	ForeignSalesWorker(const char* name, int money, double ratio, int _risk)
-		: SalesWorker(name, money, ratio), risk(_risk) {}
-	int GetPay() const {
-		return SalesWorker::GetPay() * RISK_LEVEL::Risk_level(risk);
-	}
-	void ShowSalaryInfo() const {
-		ShowYourName();
-		cout << "salary: " << SalesWorker::GetPay() << '\n';
-		cout << "risk pay: " << GetPay() << '\n';
-		cout << "sum: " << SalesWorker::GetPay() + GetPay() << '\n' << '\n';
-	}
-};
-
-class EmployeeHandler {
-private:
-	Employee* empList[50];
-	int empNum;
-public:
-	EmployeeHandler() : empNum(0) { };
-	void addEmployee(Employee* emp) {
-		empList[empNum++] = emp;
-	}
-	void ShowAllSalaryInfo() const {
-		for (int i = 0; i < empNum; i++) {
-			empList[i]->ShowSalaryInfo();
-		}
-	}
-	void ShowTotalSalary() const {
-		int sum = 0;
-		for (int i = 0; i < empNum; i++)
-			sum += empList[i]->GetPay();
-		cout << "salary sum: " << sum << '\n';
-	}
-	~EmployeeHandler() {
-		for (int i = 0; i < empNum; i++) {
-			delete empList[i];
-		}
-	}
-};
-
-int main() {
-	EmployeeHandler handler;
-
-	ForeignSalesWorker* fseller1 = new ForeignSalesWorker("Hong", 1000, 0.1, RISK_LEVEL::RISK_A);
-	fseller1->AddSalaryResult(7000);
-	handler.addEmployee(fseller1);
-
-	ForeignSalesWorker* fseller2 = new ForeignSalesWorker("Yoon", 1000, 0.1, RISK_LEVEL::RISK_B);
-	fseller2->AddSalaryResult(7000);
-	handler.addEmployee(fseller2);
-
-	ForeignSalesWorker* fseller3 = new ForeignSalesWorker("Lee", 1000, 0.1, RISK_LEVEL::RISK_C);
-	fseller3->AddSalaryResult(7000);
-	handler.addEmployee(fseller3);
-
-	handler.ShowAllSalaryInfo();
-
-	return 0;
-}
+//#define _CRT_SECURE_NO_WARNINGS
+//#include <iostream>
+//#include <cstring>
+//using namespace std;
+//
+//class Employee {
+//private:
+//	char name[100];
+//public:
+//	Employee(const char* name) {
+//		strcpy(this->name, name);
+//	}
+//	void ShowYourName() const {
+//		cout << "name: " << name << '\n';
+//	}
+//	virtual int GetPay() const = 0;
+//	virtual void ShowSalaryInfo() const = 0;
+//};
+//
+//class PermanentWorker : public Employee {
+//private:
+//	int salary;
+//public:
+//	PermanentWorker(const char* name, int money)
+//		: Employee(name), salary(money) {}
+//	int GetPay() const {
+//		return salary;
+//	};
+//	void ShowSalaryInfo() const {
+//		ShowYourName();
+//		cout << "salary: " << GetPay() << '\n' << '\n';
+//	}
+//};
+//
+//class TemporaryWorker : public Employee {
+//private:
+//	int workTime;
+//	int payPerHour;
+//public:
+//	TemporaryWorker(const char* name, int pay)
+//		:Employee(name), workTime(0), payPerHour(pay) {}
+//	void AddWorkTime(int time) {
+//		workTime += time;
+//	}
+//	int GetPay() const {
+//		return workTime * payPerHour;
+//	}
+//	void ShowSalaryInfo() const {
+//		ShowYourName();
+//		cout << "salary: " << GetPay() << '\n' << '\n';
+//	}
+//};
+//
+//class SalesWorker : public PermanentWorker {
+//private:
+//	int salesResult;
+//	double bonusRatio;
+//public:
+//	SalesWorker(const char* name, int money, double ratio)
+//		: PermanentWorker(name, money), salesResult(0), bonusRatio(ratio) {};
+//	void AddSalaryResult(int value) {
+//		salesResult += value;
+//	}
+//	int GetPay() const {
+//		return PermanentWorker::GetPay() + (int)(salesResult * bonusRatio);
+//	}
+//	void ShowSalaryInfo() const {
+//		ShowYourName();
+//		cout << "salary: " << GetPay() << '\n' << '\n';
+//	}
+//};
+//
+//namespace RISK_LEVEL {
+//	enum {
+//		RISK_A, RISK_B, RISK_C
+//	};
+//	double Risk_level(int risk) {
+//		switch (risk) {
+//		case RISK_A:
+//			return 0.3;
+//			break;
+//		case RISK_B:
+//			return 0.2;
+//			break;
+//		case RISK_C:
+//			return 0.1;
+//			break;
+//		}
+//	}
+//}
+//
+//class ForeignSalesWorker : public SalesWorker {
+//private:
+//	int risk;
+//public:
+//	ForeignSalesWorker(const char* name, int money, double ratio, int _risk)
+//		: SalesWorker(name, money, ratio), risk(_risk) {}
+//	int GetPay() const {
+//		return SalesWorker::GetPay() * RISK_LEVEL::Risk_level(risk);
+//	}
+//	void ShowSalaryInfo() const {
+//		ShowYourName();
+//		cout << "salary: " << SalesWorker::GetPay() << '\n';
+//		cout << "risk pay: " << GetPay() << '\n';
+//		cout << "sum: " << SalesWorker::GetPay() + GetPay() << '\n' << '\n';
+//	}
+//};
+//
+//class EmployeeHandler {
+//private:
+//	Employee* empList[50];
+//	int empNum;
+//public:
+//	EmployeeHandler() : empNum(0) { };
+//	void addEmployee(Employee* emp) {
+//		empList[empNum++] = emp;
+//	}
+//	void ShowAllSalaryInfo() const {
+//		for (int i = 0; i < empNum; i++) {
+//			empList[i]->ShowSalaryInfo();
+//		}
+//	}
+//	void ShowTotalSalary() const {
+//		int sum = 0;
+//		for (int i = 0; i < empNum; i++)
+//			sum += empList[i]->GetPay();
+//		cout << "salary sum: " << sum << '\n';
+//	}
+//	~EmployeeHandler() {
+//		for (int i = 0; i < empNum; i++) {
+//			delete empList[i];
+//		}
+//	}
+//};
+//
+//int main() {
+//	EmployeeHandler handler;
+//
+//	ForeignSalesWorker* fseller1 = new ForeignSalesWorker("Hong", 1000, 0.1, RISK_LEVEL::RISK_A);
+//	fseller1->AddSalaryResult(7000);
+//	handler.addEmployee(fseller1);
+//
+//	ForeignSalesWorker* fseller2 = new ForeignSalesWorker("Yoon", 1000, 0.1, RISK_LEVEL::RISK_B);
+//	fseller2->AddSalaryResult(7000);
+//	handler.addEmployee(fseller2);
+//
+//	ForeignSalesWorker* fseller3 = new ForeignSalesWorker("Lee", 1000, 0.1, RISK_LEVEL::RISK_C);
+//	fseller3->AddSalaryResult(7000);
+//	handler.addEmployee(fseller3);
+//
+//	handler.ShowAllSalaryInfo();
+//
+//	return 0;
+//}

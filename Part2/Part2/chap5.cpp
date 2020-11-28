@@ -35,45 +35,45 @@
 //	return 0;
 //}
 
-////깊은 복사
-//#define _CRT_SECURE_NO_WARNINGS
-//#include <iostream>
-//#include <cstring>
-//using namespace std;
-//
-//class Person {
-//private:
-//	char* name;
-//	int age;
-//public:
-//	Person(const char* myname, int myage) {
-//		name = new char[strlen(myname) + 1];
-//		strcpy(name, myname);
-//		age = myage;
-//	}
-//	Person(const Person& copy)
-//		:age(copy.age) {
-//		name = new char[strlen(copy.name) + 1];
-//		strcpy(name, copy.name);
-//	}
-//	void ShowPersonInfo() const {
-//		cout << "이름: " << name << '\n';
-//		cout << "나이: " << age << '\n';
-//	}
-//	~Person() {
-//		delete[]name;
-//		cout << "called destructor!" << '\n';
-//	}
-//};
-//
-//int main() {
-//	Person man1("Lee dong woo", 29);
-//	Person man2 = man1;
-//	man1.ShowPersonInfo();
-//	man2.ShowPersonInfo();
-//
-//	return 0;
-//}
+//깊은 복사
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+class Person {
+private:
+	char* name;
+	int age;
+public:
+	Person(const char* myname, int myage) {
+		name = new char[strlen(myname) + 1];
+		strcpy(name, myname);
+		age = myage;
+	}
+	Person(const Person& copy)
+		:age(copy.age) {
+		name = new char[strlen(copy.name) + 1];
+		strcpy(name, copy.name);
+	}
+	void ShowPersonInfo() const {
+		cout << "이름: " << name << '\n';
+		cout << "나이: " << age << '\n';
+	}
+	~Person() {
+		delete[]name;
+		cout << "called destructor!" << '\n';
+	}
+};
+
+int main() {
+	Person man1("Lee dong woo", 29);
+	Person man2 = man1;
+	man1.ShowPersonInfo();
+	man2.ShowPersonInfo();
+
+	return 0;
+}
 
 
 //this 포인터 활용, 복사생성자 정의
@@ -194,37 +194,37 @@
 //	return 0;
 //}
 
-#include <iostream>
-using namespace std;
-
-class SoSimple {
-private:
-	int num;
-public:
-	SoSimple(int n)
-		: num(n) {
-		cout << "New Object: " << this << '\n';
-	}
-	SoSimple(const SoSimple& copy)
-		: num(copy.num) {
-		cout << "New Copy Object: " << this << '\n';
-	}
-	~SoSimple() {
-		cout << "Destroy obj: " << this << '\n';
-	}
-};
-
-SoSimple SimpleFuncObj(SoSimple ob) {
-	cout << "Parm ADR: " << &ob << '\n';
-	return ob;
-}
-
-int main() {
-	SoSimple obj(7);
-	SimpleFuncObj(obj);
-
-	cout << '\n';
-	SoSimple tempRef = SimpleFuncObj(obj); //ob가 복사생성자를 호출하여 obj를 복사, ob가 반환되며 임시객체 생성, 이 구문은 새로운 객체를 생성하는 게 아니라 이름 없는 임시객체에 tempRef라는 이름을 붙여준 것이므로 new copy가 따로 출력되지 않는다!
-	cout << "Return Obj" << &tempRef << '\n';
-	return 0;
-}
+//#include <iostream>
+//using namespace std;
+//
+//class SoSimple {
+//private:
+//	int num;
+//public:
+//	SoSimple(int n)
+//		: num(n) {
+//		cout << "New Object: " << this << '\n';
+//	}
+//	SoSimple(const SoSimple& copy)
+//		: num(copy.num) {
+//		cout << "New Copy Object: " << this << '\n';
+//	}
+//	~SoSimple() {
+//		cout << "Destroy obj: " << this << '\n';
+//	}
+//};
+//
+//SoSimple SimpleFuncObj(SoSimple ob) {
+//	cout << "Parm ADR: " << &ob << '\n';
+//	return ob;
+//}
+//
+//int main() {
+//	SoSimple obj(7);
+//	SimpleFuncObj(obj);
+//
+//	cout << '\n';
+//	SoSimple tempRef = SimpleFuncObj(obj); //ob가 복사생성자를 호출하여 obj를 복사, ob가 반환되며 임시객체 생성, 이 구문은 새로운 객체를 생성하는 게 아니라 이름 없는 임시객체에 tempRef라는 이름을 붙여준 것이므로 new copy가 따로 출력되지 않는다!
+//	cout << "Return Obj" << &tempRef << '\n';
+//	return 0;
+//}
