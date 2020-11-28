@@ -77,88 +77,88 @@ int main() {
 
 
 //this 포인터 활용, 복사생성자 정의
-//#define _CRT_SECURE_NO_WARNINGS
-//#include <iostream>
-//#include <cstring>
-//using namespace std;
-//
-//namespace COMP_POS {
-//	enum {
-//		CLERK, SENIOR, ASSIST, MANAGER
-//	};
-//	void ShowPosition(int pos) {
-//		switch (pos) {
-//		case CLERK:
-//			cout << "CLERK" << '\n';
-//			break;
-//		case SENIOR:
-//			cout << "SENIOR" << '\n';
-//			break;
-//		case ASSIST:
-//			cout << "ASSIST" << '\n';
-//			break;
-//		case MANAGER:
-//			cout << "MANAGER" << '\n';
-//			break;
-//		}
-//	}
-//}
-//
-//class NameCard {
-//private:
-//	char* name;
-//	char* company;
-//	char* phone;
-//	int position;
-//public:
-//	NameCard(const char* name, const char* company, const char* phone, int _position)
-//		:position(_position) {
-//		this->name = new char[strlen(name) + 1];
-//		this->company = new char[strlen(company) + 1];
-//		this->phone = new char[strlen(phone) + 1];
-//
-//		strcpy(this->name, name);
-//		strcpy(this->company, company);
-//		strcpy(this->phone, phone);
-//	}
-//	NameCard(const NameCard& copy)
-//		:position(copy.position) {
-//		name = new char[strlen(copy.name) + 1];
-//		company = new char[strlen(copy.company) + 1];
-//		phone = new char[strlen(copy.phone) + 1];
-//
-//		strcpy(name, copy.name);
-//		strcpy(company, copy.company);
-//		strcpy(phone, copy.phone);
-//	}
-//
-//		void ShowNameCardInfo() {
-//		cout << "이름: " << name << '\n';
-//		cout << "회사: " << company << '\n';
-//		cout << "전화번호: " << phone << '\n';
-//		cout << "직급: ";
-//		COMP_POS::ShowPosition(position);
-//		cout << '\n';
-//	}
-//
-//	~NameCard() {
-//		delete[]name;
-//		delete[]company;
-//		delete[]phone;
-//		cout << "called destructor!" << '\n';
-//	}
-//};
-//
-//int main() {
-//	NameCard manClerk("LEE", "ABCEng", "010-1111-2222", COMP_POS::CLERK);
-//	NameCard copy1 = manClerk;
-//	NameCard manSenior("Hong", "OrangeEng", "010-3333-4444", COMP_POS::SENIOR);
-//	NameCard copy2 = manSenior;
-//	copy1.ShowNameCardInfo();
-//	copy2.ShowNameCardInfo();
-//
-//	return 0;
-//}
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+namespace COMP_POS {
+	enum {
+		CLERK, SENIOR, ASSIST, MANAGER
+	};
+	void ShowPosition(int pos) {
+		switch (pos) {
+		case CLERK:
+			cout << "CLERK" << '\n';
+			break;
+		case SENIOR:
+			cout << "SENIOR" << '\n';
+			break;
+		case ASSIST:
+			cout << "ASSIST" << '\n';
+			break;
+		case MANAGER:
+			cout << "MANAGER" << '\n';
+			break;
+		}
+	}
+}
+
+class NameCard {
+private:
+	char* name;
+	char* company;
+	char* phone;
+	int position;
+public:
+	NameCard(const char* name, const char* company, const char* phone, int _position)
+		:position(_position) {
+		this->name = new char[strlen(name) + 1];
+		this->company = new char[strlen(company) + 1];
+		this->phone = new char[strlen(phone) + 1];
+
+		strcpy(this->name, name);
+		strcpy(this->company, company);
+		strcpy(this->phone, phone);
+	}
+	NameCard(const NameCard& copy)
+		:position(copy.position) {
+		name = new char[strlen(copy.name) + 1];
+		company = new char[strlen(copy.company) + 1];
+		phone = new char[strlen(copy.phone) + 1];
+
+		strcpy(name, copy.name);
+		strcpy(company, copy.company);
+		strcpy(phone, copy.phone);
+	}
+
+		void ShowNameCardInfo() {
+		cout << "이름: " << name << '\n';
+		cout << "회사: " << company << '\n';
+		cout << "전화번호: " << phone << '\n';
+		cout << "직급: ";
+		COMP_POS::ShowPosition(position);
+		cout << '\n';
+	}
+
+	~NameCard() {
+		delete[]name;
+		delete[]company;
+		delete[]phone;
+		cout << "called destructor!" << '\n';
+	}
+};
+
+int main() {
+	NameCard manClerk("LEE", "ABCEng", "010-1111-2222", COMP_POS::CLERK);
+	NameCard copy1 = manClerk;
+	NameCard manSenior("Hong", "OrangeEng", "010-3333-4444", COMP_POS::SENIOR);
+	NameCard copy2 = manSenior;
+	copy1.ShowNameCardInfo();
+	copy2.ShowNameCardInfo();
+
+	return 0;
+}
 
 //#include <iostream>
 //using namespace std;
